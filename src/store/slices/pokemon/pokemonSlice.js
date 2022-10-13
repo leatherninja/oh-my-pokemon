@@ -3,7 +3,8 @@ import { fetchPokemonByName, fetchPokemons } from '../../../services/services'
 
 const initialState = {
   pokemons: [],
-  pokemon: null
+  pokemon: null,
+  process: false
 }
 
 export const getPokemons = createAsyncThunk(
@@ -30,9 +31,13 @@ export const pokemonSlice = createSlice({
     }
   },
   extraReducers: {
-    [getPokemons.fulfilled]: () => console.log('fullfield'),
-    [getPokemons.pending]: () => console.log('pending'),
-    [getPokemons.rejected]: () => console.log('rejected')
+    [getPokemons.fulfilled]: (state) => {
+      state.process = false
+    },
+    [getPokemons.pending]: (state) => {
+      state.process = true
+    },
+    [getPokemons.rejected]: (state) => console.log('rejected')
   }
 })
 
