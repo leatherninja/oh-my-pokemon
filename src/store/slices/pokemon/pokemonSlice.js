@@ -7,7 +7,7 @@ const initialState = {
 }
 
 export const getPokemons = createAsyncThunk(
-  'pokemon/getPokemons',
+  'pokemonCard/getPokemons',
   async (limit, { rejectWithValue, dispatch }) => {
     const result = await fetchPokemons(limit)
 
