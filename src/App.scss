@@ -1,8 +1,15 @@
-.App{}
+.App{
+  margin: 0 auto;
+}
 
 .radio-group{
   display: flex;
   justify-content: center;
   gap: 40px;
   margin-bottom: 40px;
+}
+
+.search{
+  max-width: 600px;
+  margin: 0 auto;
 }
