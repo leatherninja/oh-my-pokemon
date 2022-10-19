@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 
-import { clearPokemonList, setPokemons } from '../../store/slices/pokemon/pokemonSlice'
+import { clearPokemonList, getPokemonByType, setPokemons } from '../../store/slices/pokemon/pokemonSlice'
 
 import Field from '../inputs/field/field'
 
@@ -14,23 +14,31 @@ const SearchForm = ({ limit }) => {
   const [searchParams, setSearchParams] = useSearchParams()
   const dispatch = useDispatch()
 
+  const types = searchParams.get('types')
+
   const onSubmit = e => {
     e.preventDefault()
   }
 
   const onChange = (e) => {
     setSearchValue(e.target.value.toLowerCase())
-    setSearchParams({ limit, search: e.target.value.toLowerCase() })
+    setSearchParams({ limit, search: e.target.value.toLowerCase(), types })
+    if (!e.target.value && types) {
+      const _types = JSON.parse(types)
+      dispatch(clearPokemonList())
+      dispatch(getPokemonByType(_types))
+    }
     if (!e.target.value) {
       dispatch(clearPokemonList())
       dispatch(setPokemons(pokemons))
     }
   }
+
   return (
-    <form onSubmit={e => onSubmit(e)} className='search-form'>
+    <form onSubmit={e => onSubmit(e)} className="search-form">
       <Field
-        type='text'
-        name='search_pokemon'
+        type="text"
+        name="search_pokemon"
         onChangeHandler={e => onChange(e)}
         defaultValue={searchParams.get('search')}
         placeholder={'Введите название покемона'}
