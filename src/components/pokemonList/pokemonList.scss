@@ -1,6 +1,10 @@
-.pokemon-list{
+.pokemon-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
+
+  .pogenation-block {
+    margin: 20px 0px 50px 0px;
+  }
 }

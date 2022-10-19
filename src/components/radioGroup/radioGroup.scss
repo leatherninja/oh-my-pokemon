@@ -1,0 +1,11 @@
+.radio-group{
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.radio-group--adapt-default{
+  @media (max-width: 960px) {
+    gap: 10px;
+  }
+}

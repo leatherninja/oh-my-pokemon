@@ -1,38 +1,47 @@
 .radio-input {
 
-  &__input{
+  &__input {
     position: absolute;
     z-index: -1;
     opacity: 0;
-    &:checked + .radio-input__label{
-      &::before{
+
+    &:checked + .radio-input__label {
+      &::before {
         background-image: url("https://cdn-icons-png.flaticon.com/512/188/188918.png");
-        box-shadow: 0px 0px 9px 2px rgba(242,191,242,1);
+        box-shadow: 0px 0px 9px 2px rgb(232, 209, 123);
       }
     }
   }
-  &__label{
+
+  &__label {
     display: inline-flex;
     align-items: center;
     user-select: none;
     cursor: pointer;
-    &::before{
+    font-weight: 600;
+    &::before {
       content: '';
       display: inline-block;
       width: 20px;
       height: 20px;
       flex-shrink: 0;
       flex-grow: 0;
-      border: 1px solid rgba(242,191,242,1);
+      border: 2px solid rgb(232, 209, 123);
       border-radius: 50%;
       margin-right: 0.5em;
       background-repeat: no-repeat;
       background-position: center center;
       background-size: 90%;
-
     }
-    & input:checked{
+
+    & input:checked {
       display: block;
     }
+  }
+}
+
+.radio-input--adapt-default {
+  & .radio-input__label{
+    font-size: 12px;
   }
 }

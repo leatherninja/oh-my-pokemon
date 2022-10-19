@@ -6,7 +6,9 @@ const Field = ({
   type = 'text',
   name,
   label,
-  onChangeHandler
+  defaultValue,
+  onChangeHandler,
+  placeholder
 }) => {
   const [value, setValue] = useState('')
 
@@ -16,19 +18,23 @@ const Field = ({
   }
 
   return (
-    <div className="field">
+    <div className='field'>
       <input
-        className="field__input"
+        className='field__input'
         type={type}
-        value={value}
+        value={value || defaultValue}
         name={name}
+        placeholder={placeholder}
         onChange={e => onChange(e)}
       />
-      <label htmlFor={name} className="field__label" >{label}</label>
+      <label htmlFor={name} className='field__label'>{label}</label>
       {type === 'search' &&
-        <button className="field__search-btn">
-          Найти
-        </button>
+      <button
+        className='field__search-btn'
+        disabled={!value}
+      >
+        Найти
+      </button>
       }
     </div>
   )

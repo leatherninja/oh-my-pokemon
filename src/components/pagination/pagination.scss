@@ -1,0 +1,22 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: 0 auto;
+  gap: 15px;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #b2edfc;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+    color: #EE8200;
+  }
+}

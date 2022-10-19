@@ -1,0 +1,30 @@
+.search-block{
+  max-width: 600px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.radio-group-block{
+  margin-bottom: 40px;
+}
+
+.multiselect-block{
+  max-width: 600px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+
+.type-multiselect{
+  .search-wrapper{
+    min-height: 45px;
+    border: 1px solid #e8d17b;
+  }
+
+  .searchBox{
+    width: 50%;
+  }
+
+  .chip{
+    background: #5CC1CF;
+  }
+}

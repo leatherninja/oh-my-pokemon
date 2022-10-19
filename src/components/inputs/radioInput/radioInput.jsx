@@ -13,7 +13,7 @@ const RadioInput = ({
     onChangeHandler(e)
   }
   return (
-    <div className="radio-input">
+    <div className="radio-input radio-input--adapt-default">
       <input
         type="radio"
         value={value}

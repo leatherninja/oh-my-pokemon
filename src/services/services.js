@@ -15,8 +15,15 @@ const fetchData = async ({ url, method, data }) => {
   }
 }
 
-export const fetchPokemons = (limit) => {
-  return fetchData({ url: `pokemon/?limit=${limit}`, method: 'get' })
+export const fetchPokemons = (limit, offset) => {
+  return fetchData({ url: `pokemon/?offset=${offset}&limit=${limit}`, method: 'get' })
+}
+export const fetchPokemonTypes = () => {
+  return fetchData({ url: 'type/', method: 'get' })
+}
+
+export const fetchPokemonByType = (type, offset, limit) => {
+  return fetchData({ url: `type/${type}?offset=0&limit=10`, method: 'get' })
 }
 
 export const fetchPokemonByName = (name) => {
