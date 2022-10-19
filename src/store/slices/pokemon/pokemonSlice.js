@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import {
   fetchPokemonByName,
-  fetchPokemonByType,
+  fetchPokemonByType, fetchPokemonEvolution,
   fetchPokemons,
   fetchPokemonTypes
 } from '../../../services/services'
@@ -12,7 +12,8 @@ const initialState = {
   errorMessage: null,
   totalPokemonsCount: 1,
   allTypes: [],
-  selectedTypes: []
+  selectedTypes: [],
+  evolution: null
 }
 
 export const getPokemons = createAsyncThunk(
@@ -73,6 +74,15 @@ export const getPokemonByType = createAsyncThunk(
   }
 )
 
+export const getPokemonEvolution = createAsyncThunk(
+  'pokemon/getPokemonTypes',
+  async (id, { rejectWithValue, dispatch }) => {
+    const response = await fetchPokemonEvolution(id)
+
+    dispatch(setPokemonEvolution(response.data))
+  }
+)
+
 export const pokemonSlice = createSlice({
   name: 'pokemon',
   initialState,
@@ -83,11 +93,11 @@ export const pokemonSlice = createSlice({
     setTotalPokemonsCount: (state, { payload }) => {
       state.totalPokemonsCount = payload
     },
-    setSelectedTypes: (state, { payload }) => {
-      state.selectedTypes = payload
-    },
     setPokemonTypes: (state, { payload }) => {
       state.allTypes = payload
+    },
+    setPokemonEvolution: (state, { payload }) => {
+      state.evolution = payload
     },
     clearPokemonList: (state) => {
       state.pokemons = []
@@ -129,6 +139,14 @@ export const pokemonSlice = createSlice({
     },
     [getPokemonByType.rejected]: (state) => {
       console.log('rejected')
+    },
+
+    [getPokemonEvolution.fulfilled]: (state) => {
+    },
+    [getPokemonEvolution.pending]: (state) => {
+    },
+    [getPokemonEvolution.rejected]: (state) => {
+      console.log('rejected')
     }
   }
 })
@@ -137,7 +155,8 @@ export const {
   setPokemons,
   setTotalPokemonsCount,
   setPokemonTypes,
-  setSelectedTypes,
+  setPokemonEvolution,
   clearPokemonList
 } = pokemonSlice.actions
+
 export default pokemonSlice.reducer

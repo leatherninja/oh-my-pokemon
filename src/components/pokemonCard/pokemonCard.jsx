@@ -1,13 +1,12 @@
 import React from 'react'
 
 import './pokemonCard.scss'
+import { formatName } from '../../helpers/helpers'
 
 const PokemonCard = ({ pokemon }) => {
   const { name, sprites, types } = pokemon
 
   const avatar = sprites.other.dream_world.front_default
-
-  const formatName = name => name.split('').map((l, i) => i === 0 ? l.toUpperCase() : l)
 
   return (
     <div className='pokemon-card pokemon-card--adapt-default'>

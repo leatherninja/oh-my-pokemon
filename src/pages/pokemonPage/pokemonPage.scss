@@ -1,2 +1,46 @@
 .pokemon-page {
+  .pokemon-info {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    box-shadow: 0px 0px 8px 5px rgba(230,230,230,1);
+    padding: 20px;
+    border-radius: 5px;
+  }
+
+  .pokemon-order {
+    font-weight: 600;
+    margin-bottom: 30px;
+  }
+
+  .pokemon-avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
+    height: 350px;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(249, 236, 198, 1) 39%, rgba(254, 237, 186, 0.6839110644257703) 100%);
+    padding: 20px;
+
+    &__img {
+      width: 180px;
+      margin-bottom: 20px;
+
+      & img {
+        width: 100%;
+      }
+    }
+  }
+
+  .pokemon-name {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .pokemon-bio{
+    flex-grow: 1;
+  }
+  .pokemon-evolution{
+    flex-grow: 1;
+  }
 }
