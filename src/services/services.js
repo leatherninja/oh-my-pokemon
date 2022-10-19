@@ -29,6 +29,9 @@ export const fetchPokemonByType = (type, offset, limit) => {
 export const fetchPokemonByName = (name) => {
   return fetchData({ url: `pokemon/${name}`, method: 'get' })
 }
-export const fetchPokemonEvolution = (id) => {
+export const fetchPokemonSpecies = (name) => {
+  return fetchData({ url: `pokemon-species/${name}`, method: 'get' })
+}
+export const fetchPokemonEvolutionChain = (id) => {
   return fetchData({ url: `evolution-chain/${id}`, method: 'get' })
 }

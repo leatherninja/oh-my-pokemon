@@ -10,7 +10,6 @@ import './searchForm.scss'
 
 const SearchForm = ({ limit }) => {
   const { pokemons } = useSelector(state => state.pokemon)
-  const [searchValue, setSearchValue] = useState('')
   const [searchParams, setSearchParams] = useSearchParams()
   const dispatch = useDispatch()
 
@@ -21,16 +20,21 @@ const SearchForm = ({ limit }) => {
   }
 
   const onChange = (e) => {
-    setSearchValue(e.target.value.toLowerCase())
-    setSearchParams({ limit, search: e.target.value.toLowerCase(), types })
     if (!e.target.value && types) {
       const _types = JSON.parse(types)
       dispatch(clearPokemonList())
       dispatch(getPokemonByType(_types))
+      setSearchParams({ limit, search: e.target.value.toLowerCase(), types })
     }
-    if (!e.target.value) {
+    if (!e.target.value && !types) {
       dispatch(clearPokemonList())
       dispatch(setPokemons(pokemons))
+    }
+    if (e.target.value && types) {
+      setSearchParams({ limit, search: e.target.value.toLowerCase(), types })
+    }
+    if (!types) {
+      setSearchParams({ limit, search: e.target.value.toLowerCase() })
     }
   }
 

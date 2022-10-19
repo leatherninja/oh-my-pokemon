@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import {
   fetchPokemonByName,
-  fetchPokemonByType, fetchPokemonEvolution,
-  fetchPokemons,
+  fetchPokemonByType,
+  fetchPokemonEvolutionChain,
+  fetchPokemons, fetchPokemonSpecies,
   fetchPokemonTypes
 } from '../../../services/services'
 
@@ -37,7 +38,6 @@ export const getPokemonByName = createAsyncThunk(
   'pokemon/getPokemonByName',
   async (name, { rejectWithValue, dispatch }) => {
     const response = await fetchPokemonByName(name)
-
     dispatch(setPokemons([response.data]))
   }
 )
@@ -74,12 +74,27 @@ export const getPokemonByType = createAsyncThunk(
   }
 )
 
-export const getPokemonEvolution = createAsyncThunk(
+export const getPokemonEvolutionChain = createAsyncThunk(
   'pokemon/getPokemonTypes',
-  async (id, { rejectWithValue, dispatch }) => {
-    const response = await fetchPokemonEvolution(id)
+  async (name, { rejectWithValue, dispatch }) => {
+    const response = await fetchPokemonSpecies(name)
+    const evolutionChainId = response.data.evolution_chain.url.split('/')[6]
+    const evolutionChain = await fetchPokemonEvolutionChain(evolutionChainId)
 
-    dispatch(setPokemonEvolution(response.data))
+    const firstGeneration = evolutionChain.data.chain?.species?.name
+    const secondGeneration = evolutionChain.data.chain?.evolves_to[0]?.species?.name
+    const thirdGeneration = evolutionChain.data.chain?.evolves_to[0]?.evolves_to[0]?.species?.name
+    const generationsNames = [firstGeneration, secondGeneration, thirdGeneration]
+    const evolution = []
+    for (const name of generationsNames) {
+      const response = await fetchPokemonByName(name)
+      const generation = {
+        name,
+        avatar: response.data.sprites?.other.dream_world.front_default
+      }
+      evolution.push(generation)
+    }
+    dispatch(setPokemonEvolution(evolution))
   }
 )
 
@@ -141,11 +156,11 @@ export const pokemonSlice = createSlice({
       console.log('rejected')
     },
 
-    [getPokemonEvolution.fulfilled]: (state) => {
+    [getPokemonEvolutionChain.fulfilled]: (state) => {
     },
-    [getPokemonEvolution.pending]: (state) => {
+    [getPokemonEvolutionChain.pending]: (state) => {
     },
-    [getPokemonEvolution.rejected]: (state) => {
+    [getPokemonEvolutionChain.rejected]: (state) => {
       console.log('rejected')
     }
   }

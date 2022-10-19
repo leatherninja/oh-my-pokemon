@@ -1,7 +1,8 @@
 import React from 'react'
 
-import './pokemonCard.scss'
 import { formatName } from '../../helpers/helpers'
+
+import './pokemonCard.scss'
 
 const PokemonCard = ({ pokemon }) => {
   const { name, sprites, types } = pokemon
