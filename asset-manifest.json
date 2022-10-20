@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/oh-my-pokemon/static/css/main.e05fa3e0.css",
+    "main.js": "/oh-my-pokemon/static/js/main.34474dfa.js",
+    "static/media/loader.gif": "/oh-my-pokemon/static/media/loader.c1f829e7dcf22db953ec.gif",
+    "static/media/logo.png": "/oh-my-pokemon/static/media/logo.bebb70366dd13b4990f7.png",
+    "static/media/sad-pika.png": "/oh-my-pokemon/static/media/sad-pika.c1f1eef864f3d4462ae3.png",
+    "index.html": "/oh-my-pokemon/index.html",
+    "main.e05fa3e0.css.map": "/oh-my-pokemon/static/css/main.e05fa3e0.css.map",
+    "main.34474dfa.js.map": "/oh-my-pokemon/static/js/main.34474dfa.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e05fa3e0.css",
+    "static/js/main.34474dfa.js"
+  ]
+}
