@@ -5,7 +5,7 @@ stages:
   - deploy
 
 cache:
-  path:
+  paths:
     -node_modules/
 
 build-pages:
